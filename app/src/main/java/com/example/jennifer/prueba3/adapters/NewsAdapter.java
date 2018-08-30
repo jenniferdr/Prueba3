@@ -1,16 +1,17 @@
-package com.example.jennifer.prueba3;
+package com.example.jennifer.prueba3.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.jennifer.prueba3.OnClickNew;
+import com.example.jennifer.prueba3.R;
+import com.example.jennifer.prueba3.models.GoodNew;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class NewsAdapter extends FirebaseRecyclerAdapter<GoodNew, NewsAdapter.NewsViewHolder>{
 

@@ -1,4 +1,4 @@
-package com.example.jennifer.prueba3;
+package com.example.jennifer.prueba3.models;
 
 import java.util.Date;
 

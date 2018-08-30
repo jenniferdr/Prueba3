@@ -1,4 +1,4 @@
-package com.example.jennifer.prueba3;
+package com.example.jennifer.prueba3.views;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,11 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.jennifer.prueba3.util.CurrentUser;
+import com.example.jennifer.prueba3.util.DataSource;
+import com.example.jennifer.prueba3.R;
+import com.example.jennifer.prueba3.models.GoodNew;
 
 public class NewsDetailActivity extends AppCompatActivity {
 

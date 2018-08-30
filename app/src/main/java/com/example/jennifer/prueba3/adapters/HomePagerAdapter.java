@@ -1,8 +1,12 @@
-package com.example.jennifer.prueba3;
+package com.example.jennifer.prueba3.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.example.jennifer.prueba3.OnClickNew;
+import com.example.jennifer.prueba3.views.FavoritesFragment;
+import com.example.jennifer.prueba3.views.NewsListFragment;
 
 /**
  * A {@link FragmentPagerAdapter} that returns a fragment corresponding to

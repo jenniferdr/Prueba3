@@ -1,57 +1,62 @@
-package com.example.jennifer.prueba3;
+package com.example.jennifer.prueba3.views;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.jennifer.prueba3.util.CurrentUser;
+import com.example.jennifer.prueba3.adapters.NewsAdapter;
+import com.example.jennifer.prueba3.OnClickNew;
+import com.example.jennifer.prueba3.R;
+import com.example.jennifer.prueba3.models.GoodNew;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
-public class NewsListFragment extends Fragment {
+public class FavoritesFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private FirebaseRecyclerAdapter<GoodNew, NewsAdapter.NewsViewHolder> mAdapter;
     private OnClickNew onClickNew;
 
-    public NewsListFragment() {
+    public FavoritesFragment() {
+        // Required empty public constructor
     }
 
-    public void setOnClickNew(OnClickNew onClickNew){
-        this.onClickNew = onClickNew;
+    public void setOnClick(OnClickNew onClick){
+        this.onClickNew = onClick;
     }
 
-    public static NewsListFragment newInstance(OnClickNew onClickNew) {
-        NewsListFragment fragment = new NewsListFragment();
-        fragment.setOnClickNew(onClickNew);
+    public static FavoritesFragment newInstance(OnClickNew onClickNew) {
+        FavoritesFragment fragment = new FavoritesFragment();
+        fragment.setOnClick(onClickNew);
         /*Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);*/
         return fragment;
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_goodnews, container, false);
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_goodnews, container, false);
 
-        return rootView;
+
     }
 
     @Override
@@ -59,15 +64,15 @@ public class NewsListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         RecyclerView.LayoutManager mLayoutManager;
-        //DatabaseReference newsDatabase = FirebaseDatabase.getInstance().getReference("noticias");
 
         mRecyclerView = view.findViewById(R.id.recyclerV);
-        mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         Query query = FirebaseDatabase.getInstance()
                 .getReference()
-                .child("noticias")
+                .child("favoritas")
+                .child(CurrentUser.getCurrentUser().getUid())
                 .limitToLast(50);
 
         FirebaseRecyclerOptions<GoodNew> options =
@@ -77,25 +82,6 @@ public class NewsListFragment extends Fragment {
 
         mAdapter = new NewsAdapter(options, onClickNew);
         mRecyclerView.setAdapter(mAdapter);
-
-
-        /*newsDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("onDataChange: ", dataSnapshot.toString());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d("onDataChange: ", "error");
-            }
-        });*/
-
-        /*GoodNew ng = new GoodNew();
-        ng.setGoodNew("Se sube la data a firebase");
-        ng.setDate("Hoy");
-        newsDatabase.child("not01").setValue(ng);*/
-
     }
 
     @Override
