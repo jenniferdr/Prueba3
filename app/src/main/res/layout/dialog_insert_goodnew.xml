@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:hint="Ingrese el titulo de la noticia"
+        android:id="@+id/newstitleEt"
+        android:layout_width="fill_parent"
+        android:layout_height="54dp"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/newsDateEt"
+        android:layout_width="fill_parent"
+        android:layout_height="54dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:hint="Ingrese la fecha de la noticia"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/dialogButtonOK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="138dp"
+        android:text=" AGREGAR "
+        android:theme="@style/AccentButton" />
+
+</RelativeLayout>
